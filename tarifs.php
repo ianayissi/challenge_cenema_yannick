@@ -32,11 +32,35 @@ require("./partials/header.php");
           </tr>
         </thead>
         <tbody>
+          <?php 
+          for($age=1;$age<=99;$age++):?>
           <tr>
-            <td>1 an</td>
-            <td>4,50€</td>
-            <td>18,00€</td>
+            <td><?=$age?> ans</td>
+            <?php
+            if($age<14){
+              $tarif=4.50;
+              $abonnement=4.5*5*0.8;
+            } else if($age<16 or $age>60) {
+              $tarif=6.80;
+              if($age<25){
+                $abonnement=6.8*5*0.8;
+              } else {
+                $abonnement=6.8*5*0.9;
+              }
+            } else {
+              $tarif=8.30;
+              if($age<25){
+                $abonnement=$tarif*5*0.8;
+              } else {
+                $abonnement=$tarif*5*0.9;
+              }
+            }
+            
+            ?>
+            <td><?=$tarif?> €</td>
+            <td><?=$abonnement?> €</td>
           </tr>
+          <?php endfor; ?>
           <tr>
             <td>2 ans</td>
             <td>4,50€</td>
@@ -66,6 +90,7 @@ require("./partials/header.php");
           </tr>
         </thead>
         <tbody>
+          
           <tr>
             <td>Popcorn</td>
             <td>L</td>
